@@ -1,12 +1,70 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #F5F5F5;
+    font-size: 22px;
+    color: #949494;
+    font-weight: 350;
+}
 
-/* 
+#list{
+    background:#F7F7F7;
+    width: 720px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: auto;
+}
+input, input::placeholder{
+    font-weight: 350;
+    border:none;
+    outline: none;
+    background:#F7F7F7;
+    color: #949494;
+    width: 95%;
+}
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0;
+}
 
-*/
+li, input{
+    padding-left: 50px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+li{
+    border-top: solid 1px rgb(231, 231, 231);
+    border-bottom: solid 1px rgb(231, 231, 231);
+    display: flex; /* Usa flexbox para el contenedor del ítem */
+    justify-content: space-between; /* Espacia el contenido y el ícono */
+    align-items: center; /* Centra verticalmente el contenido */
+    overflow-wrap: break-word; /* Rompe las palabras largas */
+    word-break: break-word; /* Para navegadores antiguos */
+
+}
+footer{
+    padding: 7px 0px 7px 15px;
+    font-size: 15px;
+    color: rgb(192, 192, 192);
+}
+.decoration-1{
+    background:#F7F7F7;
+    border: solid 1px rgb(214, 214, 214);
+
+    height: 6px;
+    width: 714px;
+}
+.decoration-2{
+    background:#F7F7F7;
+    border: solid 1px rgb(214, 214, 214);
+    box-shadow: 1px 6px 20px 0px rgba(0, 0, 0, 0.2);    height: 6px;
+    width: 709px;
+}
+h1{
+    font-weight: 100;
+    font-size: 90px;
+    color: #e2cfde;
+}
