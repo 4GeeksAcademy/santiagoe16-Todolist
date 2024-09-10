@@ -6,9 +6,7 @@ const Todolist = () => {
 	const [inputValue, setInputValue] = useState("")
 	const [itemLeft, setItemLeft] = useState(0)
 	const [hoveredIndex, setHoveredIndex] = useState(null);
-
-	let newArrassy = [];
-
+	
 	useEffect(()=>{
 		fetch('https://playground.4geeks.com/todo/users/santiagoe16')
 		.then(resp => {
@@ -50,7 +48,6 @@ const Todolist = () => {
 
 		fetch(`https://playground.4geeks.com/todo/todos/${element.id}`, {method: 'DELETE'})
 		.then((response) => response.text())
-		.then((result) => console.log(result))
 	}
 	
 	return (

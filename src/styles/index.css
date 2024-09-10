@@ -11,7 +11,8 @@ html, body {
 
 #list{
     background:#F7F7F7;
-    width: 720px;
+    width: 80vw;
+    max-width: 720px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     overflow: auto;
 }
@@ -38,7 +39,7 @@ li, input{
 li{
     border-top: solid 1px rgb(231, 231, 231);
     border-bottom: solid 1px rgb(231, 231, 231);
-    display: flex; /* Usa flexbox para el contenedor del ítem */
+    display: flex; /* flexbox para el contenedor del ítem */
     justify-content: space-between; /* Espacia el contenido y el ícono */
     align-items: center; /* Centra verticalmente el contenido */
     overflow-wrap: break-word; /* Rompe las palabras largas */
@@ -53,15 +54,16 @@ footer{
 .decoration-1{
     background:#F7F7F7;
     border: solid 1px rgb(214, 214, 214);
-
     height: 6px;
-    width: 714px;
+    max-width: 714px;
+    width: 80vw;
 }
 .decoration-2{
     background:#F7F7F7;
     border: solid 1px rgb(214, 214, 214);
     box-shadow: 1px 6px 20px 0px rgba(0, 0, 0, 0.2);    height: 6px;
-    width: 709px;
+    max-width: 709px;
+    width: 79vw;
 }
 h1{
     font-weight: 100;
