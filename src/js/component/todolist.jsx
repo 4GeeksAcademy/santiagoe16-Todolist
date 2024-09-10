@@ -4,7 +4,6 @@ const Todolist = () => {
 
 	const [list, setList] = useState([]);
 	const [inputValue, setInputValue] = useState("")
-	const [itemLeft, setItemLeft] = useState(0)
 	const [hoveredIndex, setHoveredIndex] = useState(null);
 	
 	useEffect(()=>{
@@ -13,7 +12,7 @@ const Todolist = () => {
 			return resp.json();
 		})
 		.then(data => {
-		setList(data.todos.map((item)=>item));
+		setList(data.todos);
 		})
 	},[])
 	
@@ -21,7 +20,6 @@ const Todolist = () => {
 	const addTask = (e) =>{
 		if(e.key === "Enter"){
 			if(inputValue.trim() !== ""){
-				setItemLeft(list.length + 1)
 				
 				const requestOptions = {
 					method: 'POST',
@@ -34,7 +32,7 @@ const Todolist = () => {
 				fetch('https://playground.4geeks.com/todo/todos/santiagoe16', requestOptions)
 				.then(response => response.json())
 				.then(data => {
-					setList([...list, data]);
+					setList(prevList => [...prevList, data]);
 				})
 
 				setInputValue("")
@@ -44,10 +42,19 @@ const Todolist = () => {
 
 	const deleteTask = (element,index) => {
 		setList(list.filter((_,i) => i !== index))
-		setItemLeft(list.length - 1)
 
 		fetch(`https://playground.4geeks.com/todo/todos/${element.id}`, {method: 'DELETE'})
 		.then((response) => response.text())
+	}
+
+	const cleanTasks = async () =>{
+
+		for (let item of list) {
+			await fetch(`https://playground.4geeks.com/todo/todos/${item.id}`, {
+			  method: 'DELETE',
+			});
+		}
+		setList([]);
 	}
 	
 	return (
@@ -56,9 +63,12 @@ const Todolist = () => {
 			<div className="m-auto" id="list">
 				<input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} onKeyDown={addTask} placeholder="What needs to be done?"/>
 				<ul>
-					{list.map((element, index) => (<li onMouseOver={()=>setHoveredIndex(index)} onMouseOut={()=>setHoveredIndex(index)} key={index}>{element.label}<i style={{visibility: hoveredIndex === index ? 'visible' : 'hidden'}} className="fas fa-times mt-1 ms-2 me-2" onClick={() => deleteTask(element,index)}></i></li>))}
+					{list.map((element, index) => (<li onMouseEnter={()=>setHoveredIndex(index)} onMouseLeave={()=>setHoveredIndex(null)} key={index}>{element.label}<i style={{visibility: hoveredIndex === index ? 'visible' : 'hidden'}} className="fas fa-times mt-1 me-2 ms-2" onClick={() => deleteTask(element,index)}></i></li>))}
 				</ul>
-				<footer>{itemLeft} item left</footer>
+				<div className="d-flex justify-content-between align-items-center">
+				<footer>{list.length} item left</footer>
+				<button className="me-2 button-clear" onClick={cleanTasks}>Clear</button>
+				</div>
 			</div>
 			<div className="decoration-1 m-auto"></div>
 			<div className="decoration-2 m-auto"></div>
