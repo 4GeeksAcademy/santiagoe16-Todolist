@@ -7,7 +7,19 @@ const Todolist = () => {
 	const [hoveredIndex, setHoveredIndex] = useState(null);
 	
 	useEffect(()=>{
-		upadateList()
+		const verifySlug = async () => {
+			const response = await fetch("https://playground.4geeks.com/todo/users?offset=0&limit=100");
+			const data = await response.json();
+		
+			const exists = data.users.some(user => user.name === "santiagoe16");
+		
+			if (!exists) {
+				await fetch("https://playground.4geeks.com/todo/users/santiagoe16", {method: 'POST'});
+			}else{
+				upadateList()
+			}
+		}
+		verifySlug();
 	},[])
 
 	const upadateList = async () => {
